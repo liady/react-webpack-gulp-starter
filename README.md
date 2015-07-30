@@ -57,7 +57,7 @@ webpack.config.js
 - [ReactCSS](http://reactcss.com/)
 
 ## Todo
-- Run Webpack dev server using Gulp
+- Run Webpack-dev-server from Gulp using the [API](http://webpack.github.io/docs/webpack-dev-server.html#api)
 
 ## License
 
