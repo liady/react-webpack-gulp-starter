@@ -11,7 +11,7 @@ module.exports = function(BUILD_ENV){
   }
 
   console.log('* Starting Webpack');
-  console.log('* isDevelopment = ' + isDevelopment);
+  console.log('* isProduction = ' + isProduction);
 
   /* Plugins */
   var basePlugins = [
@@ -27,7 +27,12 @@ module.exports = function(BUILD_ENV){
 
   var productionPlugins = [
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin({minimize: true}),
+      new webpack.optimize.UglifyJsPlugin({
+        minimize: true,
+        compress: {
+            warnings: false    
+        }
+      }),
       new webpack.optimize.AggressiveMergingPlugin()
   ];
 
