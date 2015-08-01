@@ -51,6 +51,7 @@ webpack.config.js
 - [Babel](https://babeljs.io/)
 - [Gulp](http://gulpjs.com/)
 - [React](http://facebook.github.io/react/)
+    - [Awesome React](https://github.com/enaqx/awesome-react)
     - [Introduction resources](https://github.com/facebook/react/wiki/Articles-and-Videos)
     - [Examples](https://github.com/facebook/react/wiki/Examples)
     - [Complementary Tools](https://github.com/facebook/react/wiki/Complementary-Tools)
