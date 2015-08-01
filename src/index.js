@@ -3,7 +3,7 @@ import React from 'react/addons';
 import Root from './components/Root';
 
 var attachElement = document.getElementById('main');
-var initialName = "John Doe";
+var initialName = "World";
 var initialItems = [
         {text: "Build First React App"},
         {text: "Build One Yourself"},
