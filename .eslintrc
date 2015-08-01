@@ -20,6 +20,7 @@
     "eol-last": 0,
     "quotes": 0,
     "semi": 0,
+    "space-infix-ops": 0,
     "no-trailing-spaces": 0,
     "react/jsx-boolean-value": 1,
     "react/jsx-quotes": 1,
