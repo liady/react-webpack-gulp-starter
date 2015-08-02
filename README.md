@@ -58,7 +58,7 @@ webpack.config.getter.js
 - [ReactCSS](http://reactcss.com/)
 
 ## Todo
-- Prevent Webpack-dev-server from outputting all modules
+- Prevent webpack from outputting all React modules to console on every build
 - Pull requests are welcome!
 
 ## License
