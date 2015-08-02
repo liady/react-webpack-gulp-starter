@@ -1,11 +1,10 @@
 var gulp = require("gulp");
 var gulpsync = require('gulp-sync')(gulp);
-var server = require( 'gulp-develop-server' );
 var gutil = require("gulp-util");
+var env = require('gulp-env');
 var webpack = require("webpack");
 var webpackConfig = require("./webpack.config.js");
 var webpackConfigGetter = require('./webpack.config.getter');
-var env = require('gulp-env');
 
 function sync(){
   return gulpsync.sync([].slice.call(arguments));
@@ -67,14 +66,18 @@ gulp.task('set-prod-env', function() {
   });
 });
 
-// //run server
-// gulp.task( 'server:start', function() {
-//  server.listen( { path: './server/server.js' } );
-// });
+/*
+// run server
+var server = require( 'gulp-develop-server' );
 
-// //restart server if server.js changed
-// gulp.task( 'server:restart', function() {
-//  gulp.watch( [ './server/*.js' ], server.restart );
-// });
+gulp.task( 'server:start', function() {
+ server.listen( { path: './server/server.js' } );
+});
 
-// gulp.task('server', ['server:start','server:restart']);
+// restart server if server.js changed
+gulp.task( 'server:restart', function() {
+ gulp.watch( [ './server/*.js' ], server.restart );
+});
+
+gulp.task('server', ['server:start','server:restart']);
+*/
