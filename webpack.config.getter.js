@@ -7,7 +7,7 @@ module.exports = function(BUILD_ENV){
   var isProduction = !isDevelopment;
 
   function resolve(pathName){
-    return path.resolve(__dirname, pathName);
+    return path.join(__dirname, pathName);
   }
 
   console.log('* Starting Webpack');

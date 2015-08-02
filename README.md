@@ -6,7 +6,7 @@ A very lean React boilerplate, using webpack and gulp.
 Run the following commands:
 ```
 npm install
-npm run dev
+gulp
 ```
 Navigate your browser to `localhost:8181` to see the results. The files are watched, so all changes are automatically built and served.
 
@@ -14,7 +14,7 @@ Navigate your browser to `localhost:8181` to see the results. The files are watc
 Run the following commands:
 ```
 npm install
-gulp
+gulp build-dev
 ```
 The bundled file is created in `public/js/bundle.js`. The files are watched, so all changes are automatically built.
 Load `public/index.html` in the browser to see the results.
@@ -43,7 +43,7 @@ src/
     index.js
 gulpfile.js
 package.json
-webpack.config.js
+webpack.config.getter.js
 ```
 
 ## Included libraries
@@ -58,7 +58,8 @@ webpack.config.js
 - [ReactCSS](http://reactcss.com/)
 
 ## Todo
-- Run Webpack-dev-server from Gulp using the [API](http://webpack.github.io/docs/webpack-dev-server.html#api)
+- Prevent Webpack-dev-server from outputting all modules
+- Pull requests are welcome!
 
 ## License
 

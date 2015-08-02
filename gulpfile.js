@@ -1,29 +1,54 @@
-var gulp = require("gulp");
-var gulpsync = require('gulp-sync')(gulp);
-var gutil = require("gulp-util");
-var env = require('gulp-env');
-var webpack = require("webpack");
-var webpackConfig = require("./webpack.config.js");
-var webpackConfigGetter = require('./webpack.config.getter');
+var gulp = require("gulp"),
+    gulpsync = require('gulp-sync')(gulp),
+    gutil = require("gulp-util"),
+    env = require('gulp-env'),
+    webpack = require("webpack"),
+    WebpackDevServer = require("webpack-dev-server"),
+    webpackConfigGetter = require('./webpack.config.getter');
 
-function sync(){
-  return gulpsync.sync([].slice.call(arguments));
+var paths = {
+  publicContentBase : "public/",
+  publicJsPath: "/js/",
+  jsSources: "src/**/*"
 }
 
-gulp.task("default", ["build-dev"]);
+/*** DEFAULT TASK ***/
 
-// Development build
-gulp.task("build-dev", sync("set-dev-env", "webpack:build-dev"), function() {
-  gulp.watch(["src/**/*"], ["webpack:build-dev"]); 
+gulp.task("default", ["build-dev-server"]);
+
+
+/*** DEVELOPMENT BUILD + SERVER ***/
+
+gulp.task("build-dev-server", sync("set-dev-env", "webpack:dev-server"));
+
+gulp.task("webpack:dev-server", function(callback) {
+  // modify some webpack config options
+  var config = webpackConfigGetter();
+  config.devtool = "eval";
+
+  // Start a webpack-dev-server
+  new WebpackDevServer(webpack(config), {
+    publicPath: paths.publicJsPath,
+    contentBase : paths.publicContentBase,
+    stats: {
+      colors: true
+    }
+  }).listen(8181, "localhost", function(err) {
+    if(err) throw new gutil.PluginError("webpack:dev-server", err);
+    gutil.log("[webpack-dev-server]", "http://localhost:8181");
+  });
 });
 
-// Development build - webpack
+
+/*** DEVELOPMENT BUILD + WATCH ***/
+
+gulp.task("build-dev", sync("set-dev-env", "webpack:build-dev"), function() {
+  gulp.watch([paths.jsSources], ["webpack:build-dev"]); 
+});
 
 // create a single instance of the compiler to allow caching
 var devCompiler = null;
-
 gulp.task("webpack:build-dev", ["set-dev-env"], function(callback) {
-  
   if(!devCompiler){
       devCompiler = webpack(webpackConfigGetter());
   }
@@ -37,17 +62,14 @@ gulp.task("webpack:build-dev", ["set-dev-env"], function(callback) {
 });
 
 gulp.task('set-dev-env', function() {
-  env({
-    vars: {
-      BUILD_ENV: 'DEV'
-    }
-  });
+  setEnv('DEV');
 });
 
-// Production build
+
+/*** PRODUCTION BUILD ***/
+
 gulp.task("build", sync("set-prod-env", "webpack:build"));
 
-// Production build - webpack
 gulp.task("webpack:build", ["set-prod-env"], function(callback) {
   // run webpack
   webpack(webpackConfigGetter("PROD"), function(err, stats) {
@@ -59,16 +81,29 @@ gulp.task("webpack:build", ["set-prod-env"], function(callback) {
 });
 
 gulp.task('set-prod-env', function() {
-  env({
-    vars: {
-      BUILD_ENV: 'PROD'
-    }
-  });
+  setEnv('PROD');
 });
 
-/*
+
+/*** HELPER FUNCTIONS ***/
+
+function setEnv(buildEnv){
+  env({
+    vars: {
+      BUILD_ENV: buildEnv
+    }
+  });
+}
+
+function sync(){
+  return gulpsync.sync([].slice.call(arguments));
+}
+
+
+/*** NODE SERVER INIT (requires server file in /server/server.js) ***
+
 // run server
-var server = require( 'gulp-develop-server' );
+var server = require('gulp-develop-server');
 
 gulp.task( 'server:start', function() {
  server.listen( { path: './server/server.js' } );
