@@ -1,0 +1,33 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+html {
+    -webkit-font-smoothing: antialiased;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+}
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+li {
+    list-style: none;
+}
+body {
+    margin: 8px;
+    font-size: 13px;
+    line-height: 20px;
+}
+h1{
+    font-size: 45px;
+    line-height: 48px;
+    margin-bottom: 11px;
+    letter-spacing: -1px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.54);
+}
+.done-true label{
+    text-decoration: line-through;
+}

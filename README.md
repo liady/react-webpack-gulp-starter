@@ -56,10 +56,9 @@ webpack.config.getter.js
     - [Examples](https://github.com/facebook/react/wiki/Examples)
     - [Complementary Tools](https://github.com/facebook/react/wiki/Complementary-Tools)
 - [ReactCSS](http://reactcss.com/)
+- [MaterialUI](http://material-ui.com/)
 
-## Todo
-- Prevent webpack from outputting all React modules to console on every build
-- Pull requests are welcome!
+### Pull requests are welcome!
 
 ## License
 
