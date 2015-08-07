@@ -1,6 +1,7 @@
 var gulp = require("gulp"),
     gulpsync = require('gulp-sync')(gulp),
     gutil = require("gulp-util"),
+    ghPages = require('gulp-gh-pages');
     env = require('gulp-env'),
     webpack = require("webpack"),
     WebpackDevServer = require("webpack-dev-server"),
@@ -82,6 +83,13 @@ gulp.task("webpack:build", ["set-prod-env"], function(callback) {
 
 gulp.task('set-prod-env', function() {
   setEnv('PROD');
+});
+
+/*** GITHUB PAGES ***/
+
+gulp.task('gh-pages', ["build"], function() {
+  return gulp.src('./public/**/*')
+    .pipe(ghPages());
 });
 
 
