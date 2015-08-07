@@ -84,6 +84,11 @@ gulp.task('set-prod-env', function() {
   setEnv('PROD');
 });
 
+/*** GH PAGES ***/
+gulp.task('gh-pages', sync('build'), function(){
+  gulp.src(['./public/**/*']).pipe(gulp.dest('./'));
+});
+
 
 /*** HELPER FUNCTIONS ***/
 
