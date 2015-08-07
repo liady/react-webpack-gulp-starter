@@ -1,6 +1,6 @@
 # React Minimal Boilerplate
 
-A very lean React boilerplate, using webpack and gulp.
+A very lean React boilerplate, using webpack and gulp. [Demo](http://liady.github.io/react-webpack-gulp-starter/)
 
 ## Development Build + Server
 Run the following commands:
