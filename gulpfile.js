@@ -1,6 +1,7 @@
 var gulp = require("gulp"),
     gulpsync = require('gulp-sync')(gulp),
     gutil = require("gulp-util"),
+    replace = require('gulp-replace');
     env = require('gulp-env'),
     webpack = require("webpack"),
     WebpackDevServer = require("webpack-dev-server"),
@@ -86,7 +87,9 @@ gulp.task('set-prod-env', function() {
 
 /*** GH PAGES ***/
 gulp.task('gh-pages', sync('build'), function(){
-  gulp.src(['./public/**/*']).pipe(gulp.dest('./'));
+  gulp.src(['./public/index.html'])
+      .pipe(replace("js/", "public/js/"))
+      .pipe(gulp.dest('./'));
 });
 
 

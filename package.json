@@ -21,6 +21,7 @@
     "gulp": "^3.9.0",
     "gulp-develop-server": "^0.4.3",
     "gulp-env": "^0.2.0",
+    "gulp-replace": "^0.5.4",
     "gulp-sync": "^0.1.4",
     "gulp-util": "^3.0.6",
     "lodash": "^3.10.0",
