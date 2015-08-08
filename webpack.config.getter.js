@@ -3,12 +3,18 @@
 module.exports = function(BUILD_ENV){
   var path = require('path');
   var webpack = require('webpack');
+  var assign = require('object-assign');
   var isDevelopment = (BUILD_ENV || process.env.BUILD_ENV) !== 'PROD';
   var isProduction = !isDevelopment;
 
   function resolve(pathName){
-    return path.join(__dirname, pathName);
+    return path.resolve(__dirname, pathName);
   }
+
+  var node_modules = resolve("node_modules");
+  var depPaths = {
+    // add alias:path to already minified versions
+  };
 
   console.log('* Starting Webpack');
   console.log('* isProduction = ' + isProduction);
@@ -57,14 +63,17 @@ module.exports = function(BUILD_ENV){
         {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff"},
         {test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?limit=10000'},
         {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
-      ]
+      ],
+      noParse : Object.keys(depPaths).map(function(k){return depPaths[k]})
     },
     eslint: {
         configFile: './.eslintrc'
     },
     resolve: {
         extensions: ['', '.js'],
-        alias: {}
+        alias: assign({
+          // custom aliases here
+        }, depPaths)
     },
     plugins: plugins,
     cache: isDevelopment,
