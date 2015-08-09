@@ -1,11 +1,11 @@
 import React from "react/addons";
-import ReactCssMixin from "../mixins/ReactCssMixin";
+import reactCssMixin from "../mixins/ReactCssMixin";
 import Item from "./Item";
 
 var styles = {"list":{"marginLeft":"10px"}};
 
 var List = React.createClass({
-    mixins: [ReactCssMixin(styles)],
+    mixins: [reactCssMixin(styles)],
 
     getInitialState: function() {
         return {items: this.props.items};

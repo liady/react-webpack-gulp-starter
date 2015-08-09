@@ -7,9 +7,9 @@ var Item = React.createClass({
 
     render: function(){
 
-        return <li className={"done-"+!!this.props.done}>
+        return <li className={"done-" + !!this.props.done}>
             <Checkbox 
-                name={"cb_"+this.props.id}
+                name={"cb_" + this.props.id}
                 label={this.props.text}
                 defaultChecked={this.props.done}
                 onCheck={this.props.onToggle}/>
