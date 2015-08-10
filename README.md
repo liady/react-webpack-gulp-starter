@@ -2,7 +2,7 @@
 
 A very lean React boilerplate, using webpack and gulp. [Demo](http://liady.github.io/react-webpack-gulp-starter/)
 
-## Development Build + Server
+## Dev Build + Server
 Run the following commands:
 ```
 $ npm install
@@ -10,7 +10,7 @@ $ gulp
 ```
 Navigate your browser to `localhost:8181` to see the results. The files are watched, so all changes are automatically built and served.
 
-## Development Build
+## Dev Build
 Run the following commands:
 ```
 $ npm install
